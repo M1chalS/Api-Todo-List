@@ -1,0 +1,11 @@
+### Create new TODO
+POST http://localhost:3000/api/todos
+Content-Type: application/json
+
+{
+  "content": "essa"
+}
+
+### Get all TODOs
+GET http://localhost:3000/api/todos
+Content-Type: application/json

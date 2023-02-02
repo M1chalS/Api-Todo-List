@@ -1,10 +1,13 @@
 import express from "express";
 import {json} from 'body-parser';
 import mongoose from "mongoose";
+import {todoRouter} from "./routes/todo";
 require("dotenv").config();
 
 const app = express();
 app.use(json());
+
+app.use(todoRouter);
 
 console.log(process.env.DB_USERNAME);
 
