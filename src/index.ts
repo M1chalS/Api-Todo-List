@@ -9,8 +9,6 @@ app.use(json());
 
 app.use(todoRouter);
 
-console.log(process.env.DB_USERNAME);
-
 mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.pfspadv.mongodb.net/?retryWrites=true&w=majority`)
     .then(() => console.log("Connected to MongoDB"))
     .catch(e => console.log(e.message));
