@@ -2,10 +2,12 @@ import express from "express";
 import {json} from 'body-parser';
 import mongoose from "mongoose";
 import {todoRouter} from "./routes/todo";
+const cors = require("cors");
 require("dotenv").config();
 
 const app = express();
 app.use(json());
+app.use(cors());
 
 app.use(todoRouter);
 

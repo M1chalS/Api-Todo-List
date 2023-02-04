@@ -12,14 +12,14 @@ router.post('/api/todos', async (req: Request, res: Response) => {
     });
     await todo.save();
 
-    res.send({todo});
+    res.status(201).send(todo);
 });
 
 //Get all TODOs
 router.get('/api/todos', async (req: Request, res: Response) => {
     const todos = await Todo.find({});
 
-    res.send({todos});
+    res.status(200).send(todos);
 });
 
 export {router as todoRouter};
