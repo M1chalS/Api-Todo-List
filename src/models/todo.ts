@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 interface TodoAttrs {
     content: string;
+    done?: boolean;
 }
 
 interface TodoModel extends mongoose.Model<TodoDoc> {
@@ -10,12 +11,18 @@ interface TodoModel extends mongoose.Model<TodoDoc> {
 
 interface TodoDoc extends mongoose.Document {
     content: string;
+    done: boolean;
 }
 
 const todoSchema = new mongoose.Schema({
     content: {
         type: String,
         required: true
+    },
+    done: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 }, {
     toJSON: {

@@ -6,6 +6,10 @@ Content-Type: application/json
   "content": "test"
 }
 
-### Get all TODOs
+### Get all not done TODOs
 GET http://localhost:3000/api/todos
+Content-Type: application/json
+
+### Mark todo as done
+PATCH http://localhost:3000/api/todos/done/:id
 Content-Type: application/json
