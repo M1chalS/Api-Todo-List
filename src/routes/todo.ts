@@ -17,12 +17,12 @@ router.post('/api/todos', async (req: Request, res: Response) => {
 
 //Get all TODOs
 router.get('/api/todos', async (req: Request, res: Response) => {
-    const todos = await Todo.find({ done: false });
+    const todos = await Todo.find({});
 
     res.status(200).send(todos);
 });
 
-//Get all TODOs
+//Mark Todo as done
 router.patch('/api/todos/done/:id', async (req: Request, res: Response) => {
     const todo = await Todo.findById(req.params.id);
 
@@ -34,6 +34,19 @@ router.patch('/api/todos/done/:id', async (req: Request, res: Response) => {
     await todo.save();
 
     res.status(201).send(todo);
+});
+
+//Delete todo
+router.delete('/api/todos/:id', async (req: Request, res: Response) => {
+    const todo = await Todo.findById(req.params.id);
+
+    if(!todo) {
+        throw new Error('Todo not found');
+    }
+
+    await todo.delete();
+
+    res.status(202).send({});
 });
 
 export { router as todoRouter };
