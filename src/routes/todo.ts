@@ -7,6 +7,10 @@ const router = express.Router();
 router.post('/api/todos', async (req: Request, res: Response) => {
     const { content } = req.body;
 
+    if(!content) {
+        throw new Error("Content is required!");
+    }
+
     const todo = Todo.build({
         content
     });
@@ -33,7 +37,35 @@ router.patch('/api/todos/done/:id', async (req: Request, res: Response) => {
     todo.set({ done: true });
     await todo.save();
 
-    res.status(201).send(todo);
+    res.status(202).send(todo);
+});
+
+//Update todo
+router.patch('/api/todos/:id', async (req: Request, res: Response) => {
+    const { content, done } = req.body;
+    const todo = await Todo.findById(req.params.id);
+
+    if(!todo) {
+        throw new Error('Todo not found');
+    }
+
+    let updatedDone = done;
+
+    if(!content) {
+        throw new Error("Content is required!");
+    }
+    if(!done) {
+        updatedDone = todo.done;
+    }
+
+    todo.set({
+        content: req.body.content,
+        done: updatedDone
+    });
+
+    await todo.save();
+
+    res.status(202).send(todo);
 });
 
 //Delete todo
@@ -46,7 +78,7 @@ router.delete('/api/todos/:id', async (req: Request, res: Response) => {
 
     await todo.delete();
 
-    res.status(202).send({});
+    res.status(204).send({});
 });
 
 export { router as todoRouter };

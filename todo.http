@@ -1,3 +1,12 @@
+PATCH http://localhost:3000/api/todos/:id
+Content-Type: application/json
+
+{
+   "content": "test",
+   "done": true
+}
+
+###
 ### Create new TODO
 POST http://localhost:3000/api/todos
 Content-Type: application/json
