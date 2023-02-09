@@ -6,7 +6,6 @@ Content-Type: application/json
    "done": true
 }
 
-###
 ### Create new TODO
 POST http://localhost:3000/api/todos
 Content-Type: application/json
@@ -17,6 +16,10 @@ Content-Type: application/json
 
 ### Get all TODOs
 GET http://localhost:3000/api/todos
+Content-Type: application/json
+
+### Get TODO
+GET http://localhost:3000/api/todos/63e2da8c91ddc75de6f66552
 Content-Type: application/json
 
 ### Mark todo as done

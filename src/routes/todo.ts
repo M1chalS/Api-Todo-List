@@ -26,6 +26,13 @@ router.get('/api/todos', async (req: Request, res: Response) => {
     res.status(200).send(todos);
 });
 
+//Get concrete TODO
+router.get('/api/todos/:id', async (req: Request, res: Response) => {
+    const todo = await Todo.findById(req.params.id);
+
+    res.status(200).send(todo);
+});
+
 //Mark Todo as done
 router.patch('/api/todos/done/:id', async (req: Request, res: Response) => {
     const todo = await Todo.findById(req.params.id);
