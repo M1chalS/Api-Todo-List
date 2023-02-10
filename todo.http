@@ -26,6 +26,10 @@ Content-Type: application/json
 PATCH http://localhost:3000/api/todos/done/:id
 Content-Type: application/json
 
+### Mark todo as not done
+PATCH http://localhost:3000/api/todos/undone/:id
+Content-Type: application/json
+
 ### Delete todo
 DELETE http://localhost:3000/api/todos/:id
 Content-Type: application/json

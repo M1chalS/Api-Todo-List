@@ -47,6 +47,20 @@ router.patch('/api/todos/done/:id', async (req: Request, res: Response) => {
     res.status(202).send(todo);
 });
 
+//Mark Todo as not done
+router.patch('/api/todos/undone/:id', async (req: Request, res: Response) => {
+    const todo = await Todo.findById(req.params.id);
+
+    if(!todo) {
+        throw new Error('Todo not found');
+    }
+
+    todo.set({ done: false });
+    await todo.save();
+
+    res.status(202).send(todo);
+});
+
 //Update todo
 router.patch('/api/todos/:id', async (req: Request, res: Response) => {
     const { content, done } = req.body;
